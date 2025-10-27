@@ -1,4 +1,4 @@
-For empirical research.
+For empirical research (for myself only).
 
 # Usage in run.ai clusters (A100) and B200.
 
@@ -72,6 +72,30 @@ Have the wrong commit (for example: adding large file) and want to modify it bef
 
 For `git stash`
 
+# Hosted platform 
+https://modal.com/
+
+Command
+```py
+training_image = (
+    modal.Image.debian_slim(python_version="3.10")
+    .env({"CUBLAS_WORKSPACE_CONFIG": ":4096:8"})
+    .pip_install("torch")
+    .add_local_python_source("tensor_initializations", "optimization_algorithms", "synthetic_data", "utils", "models", "looper")
+)
+@app.function(image=training_image, gpu="A100-40GB", timeout=3600)
+def get_results(params):
+    return looper(params)
+@app.local_entrypoint()
+def main():
+    inputs = [
+        run_parameters
+    ]
+    for result in get_results.map(inputs):
+        save_results(result)
+```
+
+
 # Deep Learning Experiments
 
 ## Distributed training
@@ -79,6 +103,8 @@ For `git stash`
 ## Increase batch size
 
 Two views, optimization and hardware
+
+## Hyperparameter sweep experiments using wandb
 
 ## jax
 TO-DO
