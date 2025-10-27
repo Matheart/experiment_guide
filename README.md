@@ -98,6 +98,14 @@ def main():
 
 # Deep Learning Experiments
 
+## Parrallelize many small experiments in a single GPU (without overhead)
+Useful for small-scale experiments
+`sudo nvidia-cuda-mps-control -d`.
+
+Then can run all commands concurrently `uv run a.py --h 1 & uv run a.py --h 2`.
+
+TO-DO: Test if this really works.
+
 ## Distributed training
 
 ## Increase batch size
