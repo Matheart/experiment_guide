@@ -116,3 +116,5 @@ Two views, optimization and hardware
 
 ## jax
 TO-DO
+
+# ssh stuff
