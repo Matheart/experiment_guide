@@ -98,13 +98,19 @@ def main():
 
 # Deep Learning Experiments
 
-## Parrallelize many small experiments in a single GPU (without overhead)
-Useful for small-scale experiments
-`sudo nvidia-cuda-mps-control -d`.
+## Parrallelize many small experiments in a single GPU
 
-Then can run all commands concurrently `uv run a.py --h 1 & uv run a.py --h 2`.
+We use `small_exp` as a proxy to small experiments in practice, and we test and compare two approaches, sequential execution and parallel execution.
 
-TO-DO: Test if this really works.
+When experiments inside one batch take approximate amount of time, parallel execution saves some time e.g. `num_of_workers = 4`, but would introduce overhead if `num_of_workers` gets too large. When they have different amount of time (i.e. when varying `batch size` or `width`), parallel execution might be worse than sequential execution. To verify the conclusion we draw above, can run and compare time for code inside `small_exp` folder.
+
+This tells us when considering parallelism:
+- Be sure for every batch of experiments, **their execution time should be almost the same**, i.e. should not run experiments of `batch size = 64, 128` in parallel.
+- Use **`num_of_workers = 4`** and **should not set it as too large to avoid overhead**.
+- The time can be reduced but not a lot.
+
+Refer to `small_exp/small_exp_multiprocessing.py` for template.
+
 
 ## Distributed training
 
