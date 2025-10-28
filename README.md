@@ -111,6 +111,8 @@ This tells us when considering parallelism:
 
 Refer to `small_exp/small_exp_multiprocessing.py` for template.
 
+`jax` is actually more powerful when dealing with a large amount of small synthetic experiments.
+
 
 ## Distributed training
 
