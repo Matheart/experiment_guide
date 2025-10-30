@@ -1,6 +1,8 @@
-For empirical research (for myself only).
+# **For empirical research (for myself only).**
 
 # Usage in run.ai clusters (A100) and B200.
+
+Large Storage: `/shared_data0/hnwong`
 
 ## run.ai
 - Access to cluster `ssh hnwong@locust-login.seas.upenn.edu`
