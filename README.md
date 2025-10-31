@@ -1,6 +1,8 @@
-For empirical research (for myself only).
+# **For empirical research (for myself only).**
 
 # Usage in run.ai clusters (A100) and B200.
+
+Large Storage: `/shared_data0/hnwong`
 
 ## run.ai
 - Access to cluster `ssh hnwong@locust-login.seas.upenn.edu`
@@ -123,11 +125,13 @@ We use `small_exp` as a proxy to small experiments in practice, and we test and 
 When experiments inside one batch take approximate amount of time, parallel execution saves some time e.g. `num_of_workers = 4`, but would introduce overhead if `num_of_workers` gets too large. When they have different amount of time (i.e. when varying `batch size` or `width`), parallel execution might be worse than sequential execution. To verify the conclusion we draw above, can run and compare time for code inside `small_exp` folder.
 
 This tells us when considering parallelism:
-- Be sure for every batch of experiments, **their execution time should be almost the same**, i.e. should not run experiments of `batch size = 64, 128` in parallel.
+- Be sure for every batch of experiments, **their execution time should be almost the same**, i.e. should not run experiments of `width = 64, 128` in parallel.
 - Use **`num_of_workers = 4`** and **should not set it as too large to avoid overhead**.
 - The time can be reduced but not a lot.
 
 Refer to `small_exp/small_exp_multiprocessing.py` for template.
+
+`jax` is actually more powerful when dealing with a large amount of small synthetic experiments.
 
 
 ## Distributed training
