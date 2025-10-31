@@ -98,6 +98,24 @@ def main():
 
 # Deep Learning Experiments
 
+Choose GPU `export CUDA_VISIBLE_DEVICES=1`
+
+## Torch profiling
+```py
+with torch.profiler.profile(
+    activities=[
+        torch.profiler.ProfilerActivity.CPU,
+        torch.profiler.ProfilerActivity.CUDA,
+    ],
+    schedule=torch.profiler.schedule(wait=1, warmup=1, active=3),
+    on_trace_ready=torch.profiler.tensorboard_trace_handler('./log/profile'),
+    with_stack=True
+) as prof:
+    for step in range(steps):
+        train_step() 
+        prof.step()
+```
+
 ## Parrallelize many small experiments in a single GPU
 
 We use `small_exp` as a proxy to small experiments in practice, and we test and compare two approaches, sequential execution and parallel execution.
@@ -113,6 +131,7 @@ Refer to `small_exp/small_exp_multiprocessing.py` for template.
 
 
 ## Distributed training
+TO-DO
 
 ## Increase batch size
 
@@ -121,6 +140,8 @@ Two views, optimization and hardware
 ## Hyperparameter sweep experiments using wandb
 
 ## jax
-TO-DO
+https://docs.jax.dev/en/latest/index.html
+- Guideline: JAX internally uses functional programming model. So all the funtions should be pure (No side effect i.e. `print` inside function, or using external variables). Don't use iterator or might have errors / unexpected result. For debug printing, use `jax.debug.print()`.
+- `jax.jit`, `jax.map`, `jax.grad` are often applicable to static shapes only, but the scenarios that need dynamic shapes can always be avoided.
 
 # ssh stuff
