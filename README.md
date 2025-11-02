@@ -30,7 +30,7 @@ runai submit honam \
 and `runai port-forward honam --port 30025:30025` (optional?)
 
 - Jupyter notebook: Create using ui interface in run.ai
-- Access Tensorboard:  `uv add torch_tb_profiler`, then `uv run tensorboard --logdir=/shared_data0/hnwong/logs/profile --port=6006 --bind_all --load_fast=false`. After that we need to handle port forwarding operations. `runai port-forward honam --port 6006:6006` (Forward login node's port to job's port), `ssh -L 6006:localhost:6006 hnwong@locust-login.seas.upenn.edu` (connect local machine's 6006 port to the login node)
+- Access Tensorboard: `runai port-forward honam --port 6006:6006` (Forward login node's port to job's port), `ssh -L 6006:localhost:6006 hnwong@locust-login.seas.upenn.edu` (connect local machine's 6006 port to the login node)
 
 ## B200 nodes
 ```sh
@@ -104,6 +104,15 @@ def main():
 Choose GPU `export CUDA_VISIBLE_DEVICES=1`
 
 ## Torch profiling
+### Timing
+Most simplest way, 
+```py
+                torch.cuda.synchronize(); sync_start = time.time()
+                loss = loss.item()
+                torch.cuda.synchronize(); sync_time = time.time() - sync_start
+```
+Ignore the first time counting since it may take long (pre-loading etc.), and need to take average over multiple runs.
+
 ```py
 with torch.profiler.profile(
     activities=[
@@ -118,6 +127,8 @@ with torch.profiler.profile(
         train_step() 
         prof.step()
 ```
+
+`uv add torch_tb_profiler`, then `uv run tensorboard --logdir=/shared_data0/hnwong/logs/profile --port=6006 --bind_all --load_fast=false`. After that we need to handle port forwarding operations. `runai port-forward honam --port 6006:6006` (Forward login node's port to job's port), `ssh -L 6006:localhost:6006 hnwong@locust-login.seas.upenn.edu` (connect local machine's 6006 port to the login node)
 
 ## Parrallelize many small experiments in a single GPU
 
@@ -138,9 +149,9 @@ Refer to `small_exp/small_exp_multiprocessing.py` for template.
 ## Distributed training
 TO-DO
 
+## Accelerate Transformer training time on a single GPU
 ## Increase batch size
-
-Two views, optimization and hardware
+Increasing batch size can sometimes be more efficient, 
 
 ## Hyperparameter sweep experiments using wandb
 
