@@ -30,7 +30,7 @@ runai submit honam \
 and `runai port-forward honam --port 30025:30025` (optional?)
 
 - Jupyter notebook: Create using ui interface in run.ai
-- Access Tensorboard: `runai port-forward honam --port 6006:6006` (Forward login node's port to job's port), `ssh -L 6006:localhost:6006 hnwong@locust-login.seas.upenn.edu` (connect local machine's 6006 port to the login node)
+- Access Tensorboard:  `uv add torch_tb_profiler`, then `uv run tensorboard --logdir=/shared_data0/hnwong/logs/profile --port=6006 --bind_all --load_fast=false`. After that we need to handle port forwarding operations. `runai port-forward honam --port 6006:6006` (Forward login node's port to job's port), `ssh -L 6006:localhost:6006 hnwong@locust-login.seas.upenn.edu` (connect local machine's 6006 port to the login node)
 
 ## B200 nodes
 ```sh
