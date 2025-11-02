@@ -111,7 +111,7 @@ with torch.profiler.profile(
         torch.profiler.ProfilerActivity.CUDA,
     ],
     schedule=torch.profiler.schedule(wait=1, warmup=1, active=3),
-    on_trace_ready=torch.profiler.tensorboard_trace_handler('./log/profile'),
+    on_trace_ready=torch.profiler.tensorboard_trace_handler('/shared_data0/hnwong/logs/profile'),
     with_stack=True
 ) as prof:
     for step in range(steps):
