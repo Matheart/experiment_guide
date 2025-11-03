@@ -150,8 +150,15 @@ Refer to `small_exp/small_exp_multiprocessing.py` for template.
 TO-DO
 
 ## Accelerate Transformer training time on a single GPU
-## Increase batch size
-Increasing batch size can sometimes be more efficient, 
+### Enable Tensor Core
+```py
+torch.backends.cuda.matmul.allow_tf32 = True
+torch.backends.cudnn.allow_tf32 = True
+```
+TO-DO: testing to see if this really accelerates, and also tries mixed-precision training.
+
+### Increase batch size
+Increasing batch size can sometimes be more efficient. Larger batch can give a more accurate estimate of the gradient, can have further decrease of loss after a large number of steps, compared with small batch sizes.
 
 ## Hyperparameter sweep experiments using wandb
 
