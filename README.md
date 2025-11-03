@@ -155,7 +155,7 @@ TO-DO
 torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.allow_tf32 = True
 ```
-TO-DO: testing to see if this really accelerates, and also tries mixed-precision training.
+Enable this can have massive speedup, TO-DO: Try mixed-precision training.
 
 ### Increase batch size
 Increasing batch size can sometimes be more efficient. Larger batch can give a more accurate estimate of the gradient, can have further decrease of loss after a large number of steps, compared with small batch sizes.
