@@ -150,6 +150,7 @@ Refer to `small_exp/small_exp_multiprocessing.py` for template.
 TO-DO
 
 ## Accelerate Transformer training time on a single GPU
+Rememeber don't have frequent CPU-GPU communication during batches (e.g. `.item()`, `.to(device)`)
 ### Enable Tensor Core
 ```py
 torch.backends.cuda.matmul.allow_tf32 = True
