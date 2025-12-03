@@ -178,4 +178,5 @@ https://docs.jax.dev/en/latest/index.html
 - Guideline: JAX internally uses functional programming model. So all the funtions should be pure (No side effect i.e. `print` inside function, or using external variables). Don't use iterator or might have errors / unexpected result. For debug printing, use `jax.debug.print()`.
 - `jax.jit`, `jax.map`, `jax.grad` are often applicable to static shapes only, but the scenarios that need dynamic shapes can always be avoided.
 
-# ssh stuff
+# Git command
+Push to private repository `git remote set-url origin https://Matheart:<api_key>@github.com/Matheart/<project>.git`
