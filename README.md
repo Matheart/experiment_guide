@@ -73,7 +73,14 @@ Have the wrong commit (for example: adding large file) and want to modify it bef
 - Check this by `git rev-list --objects --all | grep 'path/to/large_file' || echo "✅ Large file removed from history`.
 - Finally, `git push origin <branch>`.
 
-For `git stash`
+`git stash`: temporarily save changes in your working directory and index (staged changes) that are not yet ready to be committed. 
+Push to private repository `git remote set-url origin https://Matheart:<api_key>@github.com/Matheart/<project>.git`
+
+# Run Jupyter notebook inside server
+```sh
+uv pip install ipykernel
+uv run python -m ipykernel install --user --name=<project-name> --display-name="Python <project-name>"
+```
 
 # Hosted platform 
 https://modal.com/
@@ -178,5 +185,4 @@ https://docs.jax.dev/en/latest/index.html
 - Guideline: JAX internally uses functional programming model. So all the funtions should be pure (No side effect i.e. `print` inside function, or using external variables). Don't use iterator or might have errors / unexpected result. For debug printing, use `jax.debug.print()`.
 - `jax.jit`, `jax.map`, `jax.grad` are often applicable to static shapes only, but the scenarios that need dynamic shapes can always be avoided.
 
-# Git command
-Push to private repository `git remote set-url origin https://Matheart:<api_key>@github.com/Matheart/<project>.git`
+
