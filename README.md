@@ -62,7 +62,8 @@ docker push hnwong2025/base:latest
 ```
 
 # Git command:
-Have the wrong commit (for example: adding large file) and want to modify it before pushing to remote:
+## Have the wrong commit
+(for example: adding large file) and want to modify it before pushing to remote:
 
 - Keeps a copy of your current state in case anything goes wrong:
 `git branch backup-before-rewrite`
@@ -75,6 +76,17 @@ Have the wrong commit (for example: adding large file) and want to modify it bef
 
 `git stash`: temporarily save changes in your working directory and index (staged changes) that are not yet ready to be committed. 
 Push to private repository `git remote set-url origin https://Matheart:<api_key>@github.com/Matheart/<project>.git`
+
+## Fork some remote repository, and clone the fork locally, want to update the local repository with the new commits in remote repository
+### inside your local clone
+git remote add upstream https://github.com/original/repo.git   # only once
+git fetch upstream
+
+### update your main branch
+git checkout main
+git merge upstream/main          # or: git rebase upstream/main
+# then update your fork on GitHub if desired
+git push origin main
 
 # Run Jupyter notebook inside server
 ```sh
