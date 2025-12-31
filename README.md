@@ -39,6 +39,7 @@ ssh hnwong@login.betty.parcc.upenn.edu
 ```
 - home directory: `/vast/home/h/hnwong`
 - find own jobs: `squeue -u $USER`
+- Cancel the job: `scancel <job_id>`
 - run job: `srun --partition=dgx-b200   --pty --container-image=hnwong2025/base:latest   bash`
 - more complicated one, need to find how to maps home addresses correctly:
 ```sh
