@@ -32,7 +32,7 @@ and `runai port-forward honam --port 30025:30025` (optional?)
 - Jupyter notebook: Create using ui interface in run.ai
 - Access Tensorboard: `runai port-forward honam --port 6006:6006` (Forward login node's port to job's port), `ssh -L 6006:localhost:6006 hnwong@locust-login.seas.upenn.edu` (connect local machine's 6006 port to the login node)
 
-## B200 nodes
+## B200 nodes (2.5x time faster than A100)
 ```sh
 kinit hnwong@UPENN.EDU
 ssh hnwong@login.betty.parcc.upenn.edu
