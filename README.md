@@ -43,17 +43,29 @@ ssh hnwong@login.betty.parcc.upenn.edu
 - run job: `srun --partition=dgx-b200   --pty --container-image=hnwong2025/base:latest   bash`
 - more complicated one, need to find how to maps home addresses correctly:
 ```sh
-srun --partition=dgx-b200 \
-     --container-image=docker://hnwong2025/base:latest \
-     --container-mounts=/vast/home/h/hnwong:/home/hnwong \
-     --container-workdir=/home/hnwong \
-     --container-env=HOME=/home/hnwong \
-     --cpus-per-task=8 \
-     --gpus=1 \
-     --mem=128G \
-     --pty \
-     --time=01:00:00 \
-     bash
+srun --export=NONE \
+  --partition=dgx-b200 \
+  --container-image=docker://hnwong2025/base:latest \
+  --container-mounts=/vast/home/h/hnwong:/home/hnwong \
+  --container-workdir=/home/hnwong \
+  --cpus-per-task=8 --gpus=1 --mem=128G --pty --time=01:00:00 \
+  bash -lc '
+    P="$PATH";
+    env -i \
+      PATH="$P" \
+      TERM=xterm-256color \
+      HOME=/home/hnwong \
+      XDG_CACHE_HOME=/home/hnwong/.cache \
+      UV_CACHE_DIR=/home/hnwong/.cache/uv \
+      PS1="hnwong@\\h:\\w\\$ " \
+      bash
+  '
+```
+
+## Transmit files from run.ai node to B200 node
+```
+scp hnwong@locust-login.seas.upenn.edu:/shared_data0/hnwong/cache/tinystories_train_maxlen_512.npy \
+    hnwong@login.betty.parcc.upenn.edu:~/.cache 
 ```
 
 ## Docker commands:
