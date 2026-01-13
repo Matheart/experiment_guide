@@ -145,6 +145,9 @@ def main():
 
 Choose GPU `export CUDA_VISIBLE_DEVICES=1`
 
+## Role of batch size
+Square root scaling rule, maximizing batch size as much as possible, and scaling lr as sqrt(scaled factor of batch size).
+
 ## Torch profiling
 ### Timing
 Most simplest way, 
