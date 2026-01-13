@@ -1,6 +1,6 @@
 # **For empirical research (for myself only).**
 
-# Usage in run.ai clusters (A100) and B200.
+# Usage in run.ai clusters (A100 & L40S) and B200.
 
 Large Storage: `/shared_data0/hnwong`
 
@@ -31,6 +31,16 @@ and `runai port-forward honam --port 30025:30025` (optional?)
 
 - Jupyter notebook: Create using ui interface in run.ai
 - Access Tensorboard: `runai port-forward honam --port 6006:6006` (Forward login node's port to job's port), `ssh -L 6006:localhost:6006 hnwong@locust-login.seas.upenn.edu` (connect local machine's 6006 port to the login node)
+
+## Access Wharton Stats Cluster (L40S)
+We still use the locust login node. Then we launch
+```sh
+#!/bin/bash
+#SBATCH --partition=whartonstat
+#SBATCH --time=00:05:00 ## time limit of 5 minutes
+#SBATCH --gres=gpu:1 ## request 1 GPU.  You can also request specific types
+#SBATCH --ntasks=1 ## instances of the program to run, typically 1.  
+```
 
 ## B200 nodes (2.5x time faster than A100)
 ```sh
