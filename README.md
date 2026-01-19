@@ -205,14 +205,10 @@ torch.backends.cudnn.allow_tf32 = True
 ```
 
 #### Mix-precision training
-Enable this can have massive speedup
-
-TO-DO: Try mixed-precision training.
+Enable `bf16` this can have massive speedup, but need to be careful on where to enable `bf16`.
 
 ### `torch.compile()`
 Almost one-line, `model = torch.compile(model)`, it captures model’s forward/backward pass once, fuses and optimizes operations, and generate efficient GPU kernels. This always leads to 1.5-2x speedup.
-
-TO-DO: Test.
 
 ### Increase batch size
 Increasing batch size can sometimes be more efficient. Larger batch can give a more accurate estimate of the gradient, can have further decrease of loss after a large number of steps, compared with small batch sizes.
