@@ -3,6 +3,7 @@
 # Usage in run.ai clusters (A100 & L40S) and B200.
 
 Large Storage: `/shared_data0/hnwong`
+Check quota: `quota -vs`
 
 ## run.ai
 - Access to cluster `ssh hnwong@locust-login.seas.upenn.edu`
