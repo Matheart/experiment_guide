@@ -42,6 +42,7 @@ We still use the locust login node. Then we launch using `sbatch whartonstats.sh
 #SBATCH --gres=gpu:1 ## request 1 GPU.  You can also request specific types
 #SBATCH --ntasks=1 ## instances of the program to run, typically 1.  
 ```
+Interactive job: `srun --partition=whartonstat --mem=16GB --time=02:00:00 --pty bash`
 
 ## B200 nodes (2.5x time faster than A100)
 ```sh
