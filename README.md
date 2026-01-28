@@ -34,7 +34,7 @@ and `runai port-forward honam --port 30025:30025` (optional?)
 - Access Tensorboard: `runai port-forward honam --port 6006:6006` (Forward login node's port to job's port), `ssh -L 6006:localhost:6006 hnwong@locust-login.seas.upenn.edu` (connect local machine's 6006 port to the login node)
 
 ## Access Wharton Stats Cluster (L40S)
-We still use the locust login node. Then we launch
+We still use the locust login node. Then we launch using `sbatch whartonstats.sh` for example.
 ```sh
 #!/bin/bash
 #SBATCH --partition=whartonstat
