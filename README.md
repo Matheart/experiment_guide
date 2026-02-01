@@ -5,7 +5,7 @@
 Large Storage: `/shared_data0/hnwong`
 Check quota: `quota -vs`
 
-## run.ai
+## run.ai (4 A100's)
 - Access to cluster `ssh hnwong@locust-login.seas.upenn.edu`
 - `runai login` username `hnwong@upenn.edu`
 - Delete job: runai `delete job honam`
@@ -33,7 +33,9 @@ and `runai port-forward honam --port 30025:30025` (optional?)
 - Jupyter notebook: Create using ui interface in run.ai
 - Access Tensorboard: `runai port-forward honam --port 6006:6006` (Forward login node's port to job's port), `ssh -L 6006:localhost:6006 hnwong@locust-login.seas.upenn.edu` (connect local machine's 6006 port to the login node)
 
-## Access Wharton Stats Cluster (L40S)
+## Access Wharton Stats Cluster (8 L40S's)
+Check GPU: `sinfo -o "%20N %20P %20G %20t"`.
+
 We still use the locust login node. Then we launch using `sbatch whartonstats.sh` for example.
 ```sh
 #!/bin/bash
