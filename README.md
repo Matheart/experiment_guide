@@ -40,9 +40,19 @@ We still use the locust login node. Then we launch using `sbatch whartonstats.sh
 ```sh
 #!/bin/bash
 #SBATCH --partition=whartonstat
-#SBATCH --time=00:05:00 ## time limit of 5 minutes
-#SBATCH --gres=gpu:1 ## request 1 GPU.  You can also request specific types
-#SBATCH --ntasks=1 ## instances of the program to run, typically 1.  
+#SBATCH --time=3:30:00
+#SBATCH --gres=gpu:1
+#SBATCH --ntasks=1
+#SBATCH --mem=32GB
+#SBATCH --job-name=moe
+
+IMAGE_PATH="/shared_data0/hnwong/hnwong2025.sif"
+
+CUDA_VISIBLE_DEVICES=0 apptainer exec --nv \
+    --bind /shared_data0 \
+    --bind /etc/pki \
+    "$IMAGE_PATH" \
+    uv run ... &
 ```
 Interactive job: `srun --partition=whartonstat --mem=16GB --time=02:00:00 --pty bash`
 
