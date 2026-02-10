@@ -54,7 +54,8 @@ CUDA_VISIBLE_DEVICES=0 apptainer exec --nv \
     "$IMAGE_PATH" \
     uv run ... &
 ```
-Interactive job: `srun --partition=whartonstat --mem=16GB --time=02:00:00 --pty bash`
+Interactive job: `srun --partition=whartonstat --gres=gpu:1 --mem=16GB --time=02:00:00 --pty b
+ash`
 
 ## B200 nodes (2.5x time faster than A100)
 ```sh
