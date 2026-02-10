@@ -35,6 +35,7 @@ and `runai port-forward honam --port 30025:30025` (optional?)
 
 ## Access Wharton Stats Cluster (8 L40S's)
 Check GPU: `sinfo -o "%20N %20P %20G %20t"`.
+`squeue -o "%.10u %.18j %.8P %.6D %.10T %.12R %.20b"`
 
 We still use the locust login node. Then we launch using `sbatch whartonstats.sh` for example.
 ```sh
